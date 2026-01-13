@@ -3,8 +3,7 @@
 <!-- Built for n8n | AI Agents | SaaS | Marketplace Ready -->
 <!-- ===================================================== -->
 <div align="center" style="display:flex; justify-content:center; align-items:center; gap:20px;">
-  <img src="https://github.com/shriram7057/shriram7057/blob/main/N8N%203d.png?raw=true" height="200" />
-  <img src="https://github.com/shriram7057/shriram7057/blob/main/N8N%20Ani.gif?raw=true" height="200" />
+  <img src="https://github.com/shriram7057/shriram7057/blob/main/N8N%203d.png?raw=true" height="210" />
 </div>
 <h1 align="center">🚀 AI Automation Workflows – Advanced Enterprise Edition</h1>
 
