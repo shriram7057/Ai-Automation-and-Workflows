@@ -1,0 +1,66 @@
+{
+  "name": "Multi Tenant Router",
+  "nodes": [
+    {
+      "name": "Tenant Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {
+        "path": "tenant",
+        "httpMethod": "POST"
+      }
+    },
+    {
+      "name": "Tenant Resolver",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        350,
+        300
+      ],
+      "parameters": {
+        "functionCode": "return items;"
+      }
+    },
+    {
+      "name": "Tenant API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {
+        "url": "https://tenant-api"
+      }
+    }
+  ],
+  "connections": {
+    "Tenant Webhook": {
+      "main": [
+        [
+          {
+            "node": "Tenant Resolver",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tenant Resolver": {
+      "main": [
+        [
+          {
+            "node": "Tenant API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

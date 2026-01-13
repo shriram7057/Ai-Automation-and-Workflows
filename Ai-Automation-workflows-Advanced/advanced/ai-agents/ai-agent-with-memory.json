@@ -1,0 +1,73 @@
+{
+  "name": "AI Agent with Memory",
+  "nodes": [
+    {
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {
+        "path": "ai-agent",
+        "httpMethod": "POST"
+      }
+    },
+    {
+      "name": "Redis Memory",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        350,
+        300
+      ],
+      "parameters": {
+        "operation": "get",
+        "key": "={{$json.userId}}"
+      }
+    },
+    {
+      "name": "OpenAI Agent",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {
+        "model": "gpt-4",
+        "messages": [
+          {
+            "role": "user",
+            "content": "={{$json.message}}"
+          }
+        ]
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Redis Memory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Memory": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
